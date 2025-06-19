@@ -4,7 +4,54 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lil' Mango Fan Site 🍋🥭</title>
-  <style>
+  <style/* Background gradient animation */
+@keyframes mangoGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+body {
+  background: linear-gradient(-45deg, #ffb347, #ffcc5c, #ffe066, #ffb347);
+  background-size: 400% 400%;
+  animation: mangoGradient 15s ease infinite;
+}
+
+/* Floating mango emoji */
+.floating-mango {
+  position: fixed;
+  font-size: 3rem;
+  animation: floatMango 6s ease-in-out infinite;
+  user-select: none;
+  pointer-events: none;
+  z-index: 1000;
+}
+@keyframes floatMango {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Cool button hover */
+#send-button:hover {
+  animation: bounce 0.4s;
+  background: #ff3a2d;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Fancy font for headers */
+header, nav a {
+  font-family: 'Luckiest Guy', cursive;
+  text-shadow: 1px 1px 0 #fff5cc;
+}
+
+/* Chat bubbles style */
+.message {
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  border-radius: 25px;
+  font-weight: 600;
+}>
     body {
       margin: 0; padding: 0;
       font-family: 'Comic Sans MS', cursive, sans-serif;

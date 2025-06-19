@@ -341,7 +341,118 @@
 
   <footer>© 2025 Lil' Mango Fan Club — Stay Juicy! 🥭</footer>
 
-  <script>
+  <// --- Lil' Mango AI Chat ---
+const mangoFacts = [
+  "Mangoes are called the 'king of fruits' in many countries.",
+  "Mango trees can grow up to 100 feet tall!",
+  "India is the largest producer of mangoes worldwide.",
+  "Mangoes contain over 20 different vitamins and minerals.",
+  "There are over 400 varieties of mangoes across the world.",
+  "Mango leaves are often used in traditional decorations and ceremonies.",
+  "Mangoes ripen faster if kept in a paper bag.",
+  "The mango fruit takes about 3 to 6 months to mature after flowering."
+];
+
+const mangoResponses = [
+  "Stay sweet like a ripe mango!",
+  "Mangoes are nature’s candy — enjoy the sweetness!",
+  "Peeling back your worries one slice at a time!",
+  "Nothing beats a sunny day and a mango smoothie!",
+  "Juicy fact: Mangoes can brighten up any mood!",
+  "Lil’ Mango says: You’re doing great, keep it up!",
+  "Sweetness overload! Mango hugs coming your way! 🥭🤗",
+  "Keep calm and mango on!",
+  "Mango tip: Share your sweetness with friends!",
+  "Life’s better with a little mango magic.",
+  "You’re the zest! Keep shining bright.",
+  "Mango power activated! Ready for some fun?",
+  "Smiling is the best mango flavor, don’t you think?"
+];
+
+const bannedWords = ["hate", "stupid", "dumb", "idiot", "kill", "die", "ugly", "fool", "suck", "bastard", "trash", "moron"];
+
+function containsBannedWords(text) {
+  text = text.toLowerCase();
+  return bannedWords.some(word => text.includes(word));
+}
+
+function appendMessage(text, sender) {
+  const msgDiv = document.createElement('div');
+  msgDiv.classList.add('message');
+  if (sender === 'user') {
+    msgDiv.classList.add('user-message');
+  } else {
+    msgDiv.classList.add('ai-message');
+  }
+  msgDiv.textContent = text;
+  chatContainer.appendChild(msgDiv);
+  chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+function getAIResponse(userText) {
+  if (containsBannedWords(userText)) {
+    return "Oops! Lil' Mango only shares kindness and good vibes. Let's keep it sweet!";
+  }
+
+  const lower = userText.toLowerCase();
+
+  // Keyword-based responses:
+  if (lower.includes('fact') || lower.includes('know') || lower.includes('tell')) {
+    const fact = mangoFacts[Math.floor(Math.random() * mangoFacts.length)];
+    return `🍋 Mango Fact for you: ${fact}`;
+  }
+
+  if (lower.includes('mango')) {
+    return "Mangoes are amazing! What would you like to know about them?";
+  }
+
+  if (lower.includes('hi') || lower.includes('hello') || lower.includes('hey')) {
+    return "Hey! Mango greetings to you! 🥭😊";
+  }
+
+  if (lower.includes('thank')) {
+    return "You're very welcome! Stay juicy! 🍋";
+  }
+
+  if (lower.includes('smoothie')) {
+    return "A mango smoothie is delicious and refreshing! Perfect for sunny days.";
+  }
+
+  if (lower.includes('tree')) {
+    return "Mango trees can live for hundreds of years and grow really tall!";
+  }
+
+  if (lower.includes('ripen') || lower.includes('ripe')) {
+    return "Keep mangoes in a paper bag to help them ripen faster.";
+  }
+
+  if (lower.includes('varieties') || lower.includes('types')) {
+    return "There are over 400 varieties of mangoes worldwide — so many flavors to enjoy!";
+  }
+
+  if (lower.includes('vitamin') || lower.includes('health')) {
+    return "Mangoes are packed with vitamins A, C, and lots of antioxidants.";
+  }
+
+  if (lower.includes('sweet') || lower.includes('taste')) {
+    return "Mangoes are nature's candy with a perfect balance of sweet and tangy!";
+  }
+
+  // If no keyword matched, fallback to a random positive mango phrase:
+  return mangoResponses[Math.floor(Math.random() * mangoResponses.length)];
+}
+
+function sendUserMessage() {
+  const text = chatInput.value.trim();
+  if (!text) return;
+  appendMessage(text, 'user');
+  chatInput.value = '';
+  setTimeout(() => {
+    const aiReply = getAIResponse(text);
+    appendMessage(aiReply, 'ai');
+  }, 700);
+}
+>
     // --- NAVIGATION ---
     const navHome = document.getElementById('nav-home');
     const navChat = document.getElementById('nav-chat');

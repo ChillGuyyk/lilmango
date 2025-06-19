@@ -249,4 +249,290 @@
       border-color: #ff6f00;
       box-shadow: 0 0 10px #ff6f00cc;
     }
-    #
+    #room-send-button {
+      background: #ff6f00;
+      border: none;
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 0 25px;
+      border-radius: 25px;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 8px #ff6f00bb;
+    }
+    #room-send-button:hover {
+      background: #e65c00;
+      box-shadow: 0 6px 14px #e65c00cc;
+      animation: bounce 0.3s;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1rem 1rem;
+      background: #ff931e;
+      color: white;
+      font-family: 'Luckiest Guy', cursive;
+      box-shadow: 0 -3px 8px rgba(0,0,0,0.15);
+      user-select: none;
+      font-size: 1.1rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      main {
+        margin: 1rem 1rem 2rem;
+        padding: 1.5rem 1.8rem;
+      }
+      nav {
+        gap: 1rem;
+        font-size: 1.1rem;
+      }
+      #home-section h1 {
+        font-size: 2.2rem;
+      }
+      #chat-section, #room-section {
+        height: 55vh;
+        max-height: none;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>Lil' Mango 🥭</header>
+
+  <nav>
+    <a href="#" id="nav-home" class="active">Home</a>
+    <a href="#" id="nav-chat">Chat with Lil' Mango AI</a>
+    <a href="#" id="nav-room">Mango Lovers Chat Room</a>
+  </nav>
+
+  <main>
+    <!-- Home Section -->
+    <section id="home-section" class="active">
+      <h1>Welcome to Lil' Mango!</h1>
+      <p>Your ultimate place to celebrate all things mango. Whether you love mango memes, juicy facts, or chatting with fellow mango lovers — you’re in the right spot.</p>
+      <img id="home-meme" src="https://i.imgur.com/7P7Tp7r.png" alt="Funny Mango Meme" title="Click me for mango wisdom!" />
+      <p style="text-align:center; font-style: italic; color: #cc6600; user-select:none;">Click the mango meme for a surprise mango fact!</p>
+    </section>
+
+    <!-- Chat with Lil Mango AI Section -->
+    <section id="chat-section">
+      <div id="chat-container" aria-live="polite" aria-label="Chat messages with Lil Mango AI"></div>
+      <div id="chat-input-container">
+        <input type="text" id="chat-input" placeholder="Ask Lil' Mango anything..." aria-label="Type your message to Lil Mango" />
+        <button id="send-button" aria-label="Send message">Send</button>
+      </div>
+    </section>
+
+    <!-- Mango Lovers Chat Room Section -->
+    <section id="room-section">
+      <div id="room-chat-container" aria-live="polite" aria-label="Mango Lovers chat room messages"></div>
+      <div id="room-input-container">
+        <input type="text" id="room-input" placeholder="Say something to fellow mango lovers..." aria-label="Type your chat message" />
+        <button id="room-send-button" aria-label="Send chat message">Send</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2025 Lil' Mango Fan Club — Stay Juicy! 🥭</footer>
+
+  <script>
+    // --- NAVIGATION ---
+    const navHome = document.getElementById('nav-home');
+    const navChat = document.getElementById('nav-chat');
+    const navRoom = document.getElementById('nav-room');
+
+    const homeSection = document.getElementById('home-section');
+    const chatSection = document.getElementById('chat-section');
+    const roomSection = document.getElementById('room-section');
+
+    function setActiveSection(section) {
+      // Hide all
+      homeSection.classList.remove('active');
+      chatSection.classList.remove('active');
+      roomSection.classList.remove('active');
+
+      navHome.classList.remove('active');
+      navChat.classList.remove('active');
+      navRoom.classList.remove('active');
+
+      // Show selected
+      section.classList.add('active');
+      if (section === homeSection) navHome.classList.add('active');
+      else if (section === chatSection) navChat.classList.add('active');
+      else if (section === roomSection) navRoom.classList.add('active');
+    }
+
+    navHome.addEventListener('click', e => {
+      e.preventDefault();
+      setActiveSection(homeSection);
+    });
+    navChat.addEventListener('click', e => {
+      e.preventDefault();
+      setActiveSection(chatSection);
+      chatInput.focus();
+    });
+    navRoom.addEventListener('click', e => {
+      e.preventDefault();
+      setActiveSection(roomSection);
+      roomInput.focus();
+    });
+
+
+    // --- HOME MANGO MEME CLICK for fun fact ---
+    const homeMeme = document.getElementById('home-meme');
+    const mangoFacts = [
+      "Mangoes are called the 'king of fruits' in many countries.",
+      "Mango trees can grow up to 100 feet tall!",
+      "India is the largest producer of mangoes worldwide.",
+      "Mangoes contain over 20 different vitamins and minerals.",
+      "There are over 400 varieties of mangoes across the world.",
+      "Mango leaves are often used in traditional decorations and ceremonies.",
+      "Mangoes ripen faster if kept in a paper bag.",
+      "The mango fruit takes about 3 to 6 months to mature after flowering."
+    ];
+    homeMeme.addEventListener('click', () => {
+      const fact = mangoFacts[Math.floor(Math.random() * mangoFacts.length)];
+      alert("🍋 Mango Fact: " + fact);
+    });
+
+
+    // --- Lil' Mango AI Chat ---
+    const chatContainer = document.getElementById('chat-container');
+    const chatInput = document.getElementById('chat-input');
+    const sendButton = document.getElementById('send-button');
+
+    // AI mango responses - positive, fun, no meanness allowed
+    const mangoResponses = [
+      "Hey there, mango lover! What's juicy with you today?",
+      "Did you know mangoes are full of happiness vitamins? 🍋😄",
+      "Stay sweet like a ripe mango!",
+      "Mangoes are nature’s candy — enjoy the sweetness!",
+      "Peeling back your worries one slice at a time!",
+      "Nothing beats a sunny day and a mango smoothie!",
+      "Juicy fact: Mangoes can brighten up any mood!",
+      "Lil’ Mango says: You’re doing great, keep it up!",
+      "Sweetness overload! Mango hugs coming your way! 🥭🤗",
+      "Keep calm and mango on!",
+      "Mango tip: Share your sweetness with friends!",
+      "Life’s better with a little mango magic.",
+      "You’re the zest! Keep shining bright.",
+      "Mango power activated! Ready for some fun?",
+      "Smiling is the best mango flavor, don’t you think?"
+    ];
+
+    // Filter out any user input with mean words
+    const bannedWords = ["hate", "stupid", "dumb", "idiot", "kill", "die", "ugly", "fool", "suck", "bastard", "trash", "moron"];
+
+    function containsBannedWords(text) {
+      text = text.toLowerCase();
+      return bannedWords.some(word => text.includes(word));
+    }
+
+    function appendMessage(text, sender) {
+      const msgDiv = document.createElement('div');
+      msgDiv.classList.add('message');
+      if (sender === 'user') {
+        msgDiv.classList.add('user-message');
+      } else {
+        msgDiv.classList.add('ai-message');
+      }
+      msgDiv.textContent = text;
+      chatContainer.appendChild(msgDiv);
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+    function getAIResponse(userText) {
+      // Basic fun filtering: if user is mean, redirect politely
+      if (containsBannedWords(userText)) {
+        return "Oops! Lil' Mango only shares kindness and good vibes. Let's keep it sweet!";
+      }
+      // Respond with a random mango phrase or an echo with mango twist
+      const lower = userText.toLowerCase();
+
+      // If user asks a question about mangoes, answer a random fact
+      if (lower.includes('fact') || lower.includes('know') || lower.includes('mango') || lower.includes('tell')) {
+        const fact = mangoFacts[Math.floor(Math.random() * mangoFacts.length)];
+        return `🍋 Mango Fact for you: ${fact}`;
+      }
+
+      // If user says thanks or hi
+      if (lower.includes('hi') || lower.includes('hello')) {
+        return "Hey! Mango greetings to you! 🥭😊";
+      }
+      if (lower.includes('thank')) {
+        return "You're very welcome! Stay juicy! 🍋";
+      }
+
+      // Otherwise random mango response
+      return mangoResponses[Math.floor(Math.random() * mangoResponses.length)];
+    }
+
+    function sendUserMessage() {
+      const text = chatInput.value.trim();
+      if (!text) return;
+      appendMessage(text, 'user');
+      chatInput.value = '';
+      setTimeout(() => {
+        const aiReply = getAIResponse(text);
+        appendMessage(aiReply, 'ai');
+      }, 700);
+    }
+
+    sendButton.addEventListener('click', sendUserMessage);
+    chatInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') sendUserMessage();
+    });
+
+    // --- Mango Lovers Chat Room (local simulation) ---
+    const roomChatContainer = document.getElementById('room-chat-container');
+    const roomInput = document.getElementById('room-input');
+    const roomSendButton = document.getElementById('room-send-button');
+
+    // Simple chat history in-memory
+    const roomMessages = [];
+
+    function appendRoomMessage(text) {
+      const msgDiv = document.createElement('div');
+      msgDiv.classList.add('room-message');
+      msgDiv.textContent = text;
+      roomChatContainer.appendChild(msgDiv);
+      roomChatContainer.scrollTop = roomChatContainer.scrollHeight;
+    }
+
+    function sendRoomMessage() {
+      const text = roomInput.value.trim();
+      if (!text) return;
+      if (containsBannedWords(text)) {
+        alert("Let's keep the chat kind and friendly, please!");
+        roomInput.value = '';
+        return;
+      }
+      // Add message to room messages
+      roomMessages.push(text);
+      appendRoomMessage(text);
+      roomInput.value = '';
+    }
+
+    roomSendButton.addEventListener('click', sendRoomMessage);
+    roomInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') sendRoomMessage();
+    });
+
+    // Initialize with some welcome messages
+    const welcomeMsgs = [
+      "🍋 Welcome to Mango Lovers Chat Room! Say hi and share your mango stories!",
+      "🥭 Lil' Mango says: Be kind and juicy!",
+      "🍍 Remember, sharing is caring, especially with mangoes!"
+    ];
+    welcomeMsgs.forEach(msg => appendRoomMessage(msg));
+
+  </script>
+</body>
+</html>
+

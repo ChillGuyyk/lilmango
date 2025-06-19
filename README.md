@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lil' Mango Fan Site 🍋🥭</title>
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0; padding: 0;
@@ -18,7 +19,8 @@
       background: #ffb347;
       padding: 20px;
       text-align: center;
-      font-size: 2rem;
+      font-family: 'Luckiest Guy', cursive;
+      font-size: 2.5rem;
       font-weight: bold;
       box-shadow: 0 3px 6px rgba(0,0,0,0.1);
     }
@@ -29,12 +31,14 @@
       gap: 20px;
       padding: 10px 0;
       font-weight: bold;
+      font-family: 'Luckiest Guy', cursive;
     }
     nav a {
       color: #664d03;
       text-decoration: none;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       transition: color 0.3s;
+      cursor: pointer;
     }
     nav a:hover {
       color: #ff6f61;
@@ -76,6 +80,8 @@
       border-radius: 15px;
       max-width: 70%;
       clear: both;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+      font-weight: 600;
     }
     .user-message {
       background: #ffcc5c;
@@ -113,6 +119,11 @@
     }
     #send-button:hover {
       background: #ff4a3c;
+      animation: bounce 0.4s;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
   </style>
 </head>
@@ -180,7 +191,6 @@
     }
 
     function getAiResponse(userText) {
-      // Simple silly AI responses
       const lower = userText.toLowerCase();
       if(lower.includes('hello') || lower.includes('hi')) return "Hey there! Lil' Mango here 🍋🥭!";
       if(lower.includes('mango')) return "Mangoes are the king of fruits, obviously!";

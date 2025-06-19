@@ -1,502 +1,241 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lil' Mango - The Ultimate Mango Fan Site 🥭🍋</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Open+Sans&display=swap" rel="stylesheet" />
-
+  <title>Lil' Mango - Funny Mango Fan Site</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Roboto&display=swap" rel="stylesheet" />
   <style>
-    /* Reset */
-    * {
-      box-sizing: border-box;
-    }
     body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #ffe259 0%, #ffa751 100%);
       margin: 0;
-      font-family: 'Open Sans', sans-serif;
-      background: linear-gradient(135deg, #fff1b8, #ffb347);
-      min-height: 100vh;
+      color: #42210b;
       display: flex;
       flex-direction: column;
-      color: #663300;
+      min-height: 100vh;
     }
     header {
-      background: #ff931e;
-      padding: 1.5rem 2rem;
-      font-family: 'Luckiest Guy', cursive;
-      font-size: 2.8rem;
-      color: white;
+      background: #f47b1f;
+      padding: 1rem;
       text-align: center;
-      text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-      user-select: none;
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.5rem;
+      color: white;
+      text-shadow: 1px 1px 2px #b35900;
     }
     nav {
-      background: #ffa500cc;
+      background: #ffaf3f;
       display: flex;
       justify-content: center;
-      gap: 2rem;
-      padding: 0.8rem 0;
-      font-family: 'Luckiest Guy', cursive;
-      font-size: 1.3rem;
-      box-shadow: inset 0 -3px 5px rgba(0,0,0,0.1);
-      user-select: none;
+      gap: 1rem;
+      padding: 0.5rem;
     }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      padding: 0.25rem 0.75rem;
-      border-radius: 30px;
-      transition: background-color 0.3s ease, color 0.3s ease;
+    nav button {
+      background: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-weight: bold;
+      border-radius: 8px;
       cursor: pointer;
+      transition: background 0.3s;
+      font-family: 'Fredoka One', cursive;
+      color: #cc6200;
     }
-    nav a:hover,
-    nav a.active {
-      background: #ff6f00;
-      color: #fffddb;
-      box-shadow: 0 0 12px #ff6f00cc;
+    nav button:hover, nav button.active {
+      background: #ffd580;
     }
     main {
       flex-grow: 1;
-      max-width: 900px;
-      margin: 2rem auto 3rem;
-      background: #fff7d1;
-      border-radius: 20px;
-      box-shadow: 0 6px 20px rgba(255,165,0,0.4);
-      padding: 2rem 2.5rem;
-      user-select: text;
+      padding: 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
-    section {
+    .page {
       display: none;
     }
-    section.active {
+    .page.active {
       display: block;
     }
-
-    /* Home page */
-    #home-section h1 {
-      font-family: 'Luckiest Guy', cursive;
-      font-size: 3rem;
-      margin-bottom: 0.3rem;
-      color: #ff6f00;
-      text-align: center;
-      user-select: none;
-    }
-    #home-section p {
-      font-size: 1.15rem;
-      line-height: 1.5;
-      max-width: 600px;
-      margin: 1rem auto 2rem;
-      text-align: center;
-      color: #663300;
-    }
-    #home-meme {
-      display: block;
-      margin: 0 auto;
-      max-width: 320px;
+    /* Home page styles */
+    .mango-meme {
+      max-width: 100%;
       border-radius: 15px;
-      box-shadow: 0 0 20px #ff8c00aa;
-      user-select: none;
-      transition: transform 0.3s ease;
       cursor: pointer;
+      box-shadow: 0 0 15px #ffa751;
+      transition: transform 0.3s ease;
     }
-    #home-meme:hover {
-      transform: scale(1.05) rotate(-3deg);
-      box-shadow: 0 0 35px #ff6f00cc;
+    .mango-meme:hover {
+      transform: scale(1.05);
+    }
+    .fact {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #a64d00;
+      text-align: center;
     }
 
-    /* Chat with Lil Mango */
-    #chat-section {
-      display: flex;
-      flex-direction: column;
-      height: 65vh;
-      max-height: 600px;
-    }
-    #chat-container {
-      flex-grow: 1;
-      background: #fff3b0;
-      border-radius: 15px;
+    /* AI chat styles */
+    #chatContainer {
+      border: 2px solid #f47b1f;
+      border-radius: 12px;
       padding: 1rem;
-      box-shadow: inset 0 0 15px #ffb347cc;
+      height: 400px;
       overflow-y: auto;
-      display: flex;
-      flex-direction: column;
+      background: #fff5e6;
+      box-shadow: inset 0 0 10px #f2c57c;
     }
     .message {
-      max-width: 70%;
       margin: 0.5rem 0;
-      padding: 10px 16px;
-      border-radius: 20px;
-      font-weight: 600;
-      box-shadow: 0 2px 7px rgba(0,0,0,0.1);
+      padding: 0.5rem 0.8rem;
+      border-radius: 12px;
+      max-width: 70%;
       line-height: 1.3;
-      user-select: text;
+      font-size: 1rem;
       word-wrap: break-word;
     }
     .user-message {
-      background: #ffcc5c;
-      align-self: flex-end;
-      border-bottom-right-radius: 2px;
-      color: #663300;
-      animation: slideInRight 0.3s ease;
+      background: #f47b1f;
+      color: white;
+      margin-left: auto;
+      font-weight: 600;
     }
     .ai-message {
-      background: #ffe066;
-      align-self: flex-start;
-      border-bottom-left-radius: 2px;
-      color: #663300;
-      animation: slideInLeft 0.3s ease;
+      background: #ffdda3;
+      color: #42210b;
+      margin-right: auto;
+      font-style: italic;
     }
-    @keyframes slideInRight {
-      from { transform: translateX(50px); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-    @keyframes slideInLeft {
-      from { transform: translateX(-50px); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-    #chat-input-container {
-      display: flex;
-      margin-top: 10px;
-      gap: 10px;
-    }
-    #chat-input {
-      flex-grow: 1;
-      padding: 12px 18px;
+    #chatInput {
+      width: 100%;
+      padding: 0.7rem;
+      margin-top: 0.7rem;
+      border-radius: 10px;
+      border: 2px solid #f47b1f;
       font-size: 1rem;
-      border-radius: 25px;
-      border: 3px solid #ff931e;
-      outline: none;
-      transition: border-color 0.3s ease;
-    }
-    #chat-input:focus {
-      border-color: #ff6f00;
-      box-shadow: 0 0 10px #ff6f00cc;
-    }
-    #send-button {
-      background: #ff6f00;
-      border: none;
-      color: white;
-      font-weight: 700;
-      font-size: 1.1rem;
-      padding: 0 25px;
-      border-radius: 25px;
-      cursor: pointer;
-      user-select: none;
-      transition: background-color 0.3s ease;
-      box-shadow: 0 4px 8px #ff6f00bb;
-    }
-    #send-button:hover {
-      background: #e65c00;
-      box-shadow: 0 6px 14px #e65c00cc;
-      animation: bounce 0.3s;
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
+      font-family: 'Roboto', sans-serif;
     }
 
-    /* Mango Lovers Chat room */
-    #room-section {
-      display: flex;
-      flex-direction: column;
-      height: 65vh;
-      max-height: 600px;
-    }
-    #room-chat-container {
-      flex-grow: 1;
-      background: #fff3b0;
-      border-radius: 15px;
+    /* Mango Lovers Chat Room */
+    #roomChatContainer {
+      border: 2px solid #ffaf3f;
+      border-radius: 12px;
       padding: 1rem;
-      box-shadow: inset 0 0 15px #ffb347cc;
+      height: 300px;
       overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 12px;
+      background: #fff8e1;
+      box-shadow: inset 0 0 10px #ffcc80;
     }
     .room-message {
-      max-width: 80%;
       margin: 0.4rem 0;
-      padding: 10px 18px;
-      border-radius: 20px;
-      font-weight: 600;
-      background: #ffcc5c;
-      color: #663300;
-      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
-      word-wrap: break-word;
-      user-select: text;
-      animation: fadeInMessage 0.3s ease;
+      padding: 0.4rem 0.6rem;
+      border-radius: 10px;
+      background: #ffd580;
+      color: #5d3000;
+      font-size: 0.9rem;
     }
-    @keyframes fadeInMessage {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    #room-input-container {
-      display: flex;
-      gap: 10px;
-    }
-    #room-input {
-      flex-grow: 1;
-      padding: 12px 18px;
+    #roomInput {
+      width: 100%;
+      padding: 0.6rem;
+      margin-top: 0.6rem;
+      border-radius: 10px;
+      border: 2px solid #ffaf3f;
       font-size: 1rem;
-      border-radius: 25px;
-      border: 3px solid #ff931e;
-      outline: none;
-      transition: border-color 0.3s ease;
+      font-family: 'Roboto', sans-serif;
     }
-    #room-input:focus {
-      border-color: #ff6f00;
-      box-shadow: 0 0 10px #ff6f00cc;
-    }
-    #room-send-button {
-      background: #ff6f00;
+    #roomSendButton {
+      margin-top: 0.5rem;
+      background: #f47b1f;
       border: none;
       color: white;
       font-weight: 700;
-      font-size: 1.1rem;
-      padding: 0 25px;
-      border-radius: 25px;
+      padding: 0.6rem 1rem;
+      border-radius: 12px;
       cursor: pointer;
-      user-select: none;
-      transition: background-color 0.3s ease;
-      box-shadow: 0 4px 8px #ff6f00bb;
+      font-family: 'Fredoka One', cursive;
     }
-    #room-send-button:hover {
-      background: #e65c00;
-      box-shadow: 0 6px 14px #e65c00cc;
-      animation: bounce 0.3s;
+    #roomSendButton:hover {
+      background: #cc6200;
     }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 1rem 1rem;
-      background: #ff931e;
-      color: white;
-      font-family: 'Luckiest Guy', cursive;
-      box-shadow: 0 -3px 8px rgba(0,0,0,0.15);
-      user-select: none;
-      font-size: 1.1rem;
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      main {
-        margin: 1rem 1rem 2rem;
-        padding: 1.5rem 1.8rem;
-      }
-      nav {
-        gap: 1rem;
-        font-size: 1.1rem;
-      }
-      #home-section h1 {
-        font-size: 2.2rem;
-      }
-      #chat-section, #room-section {
-        height: 55vh;
-        max-height: none;
-      }
-    }
-
   </style>
 </head>
 <body>
-
-  <header>Lil' Mango 🥭</header>
-
+  <header>Lil' Mango 🍋🥭</header>
   <nav>
-    <a href="#" id="nav-home" class="active">Home</a>
-    <a href="#" id="nav-chat">Chat with Lil' Mango AI</a>
-    <a href="#" id="nav-room">Mango Lovers Chat Room</a>
+    <button id="homeBtn" class="active">Home</button>
+    <button id="aiChatBtn">Chat with Lil' Mango AI</button>
+    <button id="roomChatBtn">Mango Lovers Chat Room</button>
   </nav>
 
   <main>
-    <!-- Home Section -->
-    <section id="home-section" class="active">
-      <h1>Welcome to Lil' Mango!</h1>
-      <p>Your ultimate place to celebrate all things mango. Whether you love mango memes, juicy facts, or chatting with fellow mango lovers — you’re in the right spot.</p>
-      <img id="home-meme" src="https://i.imgur.com/7P7Tp7r.png" alt="Funny Mango Meme" title="Click me for mango wisdom!" />
-      <p style="text-align:center; font-style: italic; color: #cc6600; user-select:none;">Click the mango meme for a surprise mango fact!</p>
+    <!-- Home Page -->
+    <section id="home" class="page active">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/9/90/Hapus_Mango.jpg"
+        alt="Funny Mango Meme"
+        class="mango-meme"
+        id="mangoMeme"
+        title="Click me for a mango fact!"
+      />
+      <div class="fact" id="mangoFact"></div>
     </section>
 
-    <!-- Chat with Lil Mango AI Section -->
-    <section id="chat-section">
-      <div id="chat-container" aria-live="polite" aria-label="Chat messages with Lil Mango AI"></div>
-      <div id="chat-input-container">
-        <input type="text" id="chat-input" placeholder="Ask Lil' Mango anything..." aria-label="Type your message to Lil Mango" />
-        <button id="send-button" aria-label="Send message">Send</button>
-      </div>
+    <!-- AI Chat Page -->
+    <section id="aiChat" class="page">
+      <div id="chatContainer" aria-live="polite" aria-label="Chat messages"></div>
+      <input
+        type="text"
+        id="chatInput"
+        placeholder="Talk to Lil' Mango..."
+        aria-label="Chat input"
+        autocomplete="off"
+      />
     </section>
 
-    <!-- Mango Lovers Chat Room Section -->
-    <section id="room-section">
-      <div id="room-chat-container" aria-live="polite" aria-label="Mango Lovers chat room messages"></div>
-      <div id="room-input-container">
-        <input type="text" id="room-input" placeholder="Say something to fellow mango lovers..." aria-label="Type your chat message" />
-        <button id="room-send-button" aria-label="Send chat message">Send</button>
-      </div>
+    <!-- Mango Lovers Chat Room -->
+    <section id="roomChat" class="page">
+      <div id="roomChatContainer" aria-live="polite" aria-label="Chat room messages"></div>
+      <input
+        type="text"
+        id="roomInput"
+        placeholder="Say something in Mango Lovers chat..."
+        aria-label="Chat room input"
+        autocomplete="off"
+      />
+      <button id="roomSendButton">Send</button>
     </section>
   </main>
 
-  <footer>© 2025 Lil' Mango Fan Club — Stay Juicy! 🥭</footer>
+  <script>
+    // Navigation buttons and pages
+    const homeBtn = document.getElementById('homeBtn');
+    const aiChatBtn = document.getElementById('aiChatBtn');
+    const roomChatBtn = document.getElementById('roomChatBtn');
+    const pages = document.querySelectorAll('.page');
 
-  <// --- Lil' Mango AI Chat ---
-const mangoFacts = [
-  "Mangoes are called the 'king of fruits' in many countries.",
-  "Mango trees can grow up to 100 feet tall!",
-  "India is the largest producer of mangoes worldwide.",
-  "Mangoes contain over 20 different vitamins and minerals.",
-  "There are over 400 varieties of mangoes across the world.",
-  "Mango leaves are often used in traditional decorations and ceremonies.",
-  "Mangoes ripen faster if kept in a paper bag.",
-  "The mango fruit takes about 3 to 6 months to mature after flowering."
-];
+    function setActivePage(pageId) {
+      pages.forEach((p) => p.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
 
-const mangoResponses = [
-  "Stay sweet like a ripe mango!",
-  "Mangoes are nature’s candy — enjoy the sweetness!",
-  "Peeling back your worries one slice at a time!",
-  "Nothing beats a sunny day and a mango smoothie!",
-  "Juicy fact: Mangoes can brighten up any mood!",
-  "Lil’ Mango says: You’re doing great, keep it up!",
-  "Sweetness overload! Mango hugs coming your way! 🥭🤗",
-  "Keep calm and mango on!",
-  "Mango tip: Share your sweetness with friends!",
-  "Life’s better with a little mango magic.",
-  "You’re the zest! Keep shining bright.",
-  "Mango power activated! Ready for some fun?",
-  "Smiling is the best mango flavor, don’t you think?"
-];
-
-const bannedWords = ["hate", "stupid", "dumb", "idiot", "kill", "die", "ugly", "fool", "suck", "bastard", "trash", "moron"];
-
-function containsBannedWords(text) {
-  text = text.toLowerCase();
-  return bannedWords.some(word => text.includes(word));
-}
-
-function appendMessage(text, sender) {
-  const msgDiv = document.createElement('div');
-  msgDiv.classList.add('message');
-  if (sender === 'user') {
-    msgDiv.classList.add('user-message');
-  } else {
-    msgDiv.classList.add('ai-message');
-  }
-  msgDiv.textContent = text;
-  chatContainer.appendChild(msgDiv);
-  chatContainer.scrollTop = chatContainer.scrollHeight;
-}
-
-function getAIResponse(userText) {
-  if (containsBannedWords(userText)) {
-    return "Oops! Lil' Mango only shares kindness and good vibes. Let's keep it sweet!";
-  }
-
-  const lower = userText.toLowerCase();
-
-  // Keyword-based responses:
-  if (lower.includes('fact') || lower.includes('know') || lower.includes('tell')) {
-    const fact = mangoFacts[Math.floor(Math.random() * mangoFacts.length)];
-    return `🍋 Mango Fact for you: ${fact}`;
-  }
-
-  if (lower.includes('mango')) {
-    return "Mangoes are amazing! What would you like to know about them?";
-  }
-
-  if (lower.includes('hi') || lower.includes('hello') || lower.includes('hey')) {
-    return "Hey! Mango greetings to you! 🥭😊";
-  }
-
-  if (lower.includes('thank')) {
-    return "You're very welcome! Stay juicy! 🍋";
-  }
-
-  if (lower.includes('smoothie')) {
-    return "A mango smoothie is delicious and refreshing! Perfect for sunny days.";
-  }
-
-  if (lower.includes('tree')) {
-    return "Mango trees can live for hundreds of years and grow really tall!";
-  }
-
-  if (lower.includes('ripen') || lower.includes('ripe')) {
-    return "Keep mangoes in a paper bag to help them ripen faster.";
-  }
-
-  if (lower.includes('varieties') || lower.includes('types')) {
-    return "There are over 400 varieties of mangoes worldwide — so many flavors to enjoy!";
-  }
-
-  if (lower.includes('vitamin') || lower.includes('health')) {
-    return "Mangoes are packed with vitamins A, C, and lots of antioxidants.";
-  }
-
-  if (lower.includes('sweet') || lower.includes('taste')) {
-    return "Mangoes are nature's candy with a perfect balance of sweet and tangy!";
-  }
-
-  // If no keyword matched, fallback to a random positive mango phrase:
-  return mangoResponses[Math.floor(Math.random() * mangoResponses.length)];
-}
-
-function sendUserMessage() {
-  const text = chatInput.value.trim();
-  if (!text) return;
-  appendMessage(text, 'user');
-  chatInput.value = '';
-  setTimeout(() => {
-    const aiReply = getAIResponse(text);
-    appendMessage(aiReply, 'ai');
-  }, 700);
-}
->
-    // --- NAVIGATION ---
-    const navHome = document.getElementById('nav-home');
-    const navChat = document.getElementById('nav-chat');
-    const navRoom = document.getElementById('nav-room');
-
-    const homeSection = document.getElementById('home-section');
-    const chatSection = document.getElementById('chat-section');
-    const roomSection = document.getElementById('room-section');
-
-    function setActiveSection(section) {
-      // Hide all
-      homeSection.classList.remove('active');
-      chatSection.classList.remove('active');
-      roomSection.classList.remove('active');
-
-      navHome.classList.remove('active');
-      navChat.classList.remove('active');
-      navRoom.classList.remove('active');
-
-      // Show selected
-      section.classList.add('active');
-      if (section === homeSection) navHome.classList.add('active');
-      else if (section === chatSection) navChat.classList.add('active');
-      else if (section === roomSection) navRoom.classList.add('active');
+      // Update nav button active state
+      [homeBtn, aiChatBtn, roomChatBtn].forEach((btn) => btn.classList.remove('active'));
+      if (pageId === 'home') homeBtn.classList.add('active');
+      else if (pageId === 'aiChat') aiChatBtn.classList.add('active');
+      else if (pageId === 'roomChat') roomChatBtn.classList.add('active');
     }
 
-    navHome.addEventListener('click', e => {
-      e.preventDefault();
-      setActiveSection(homeSection);
-    });
-    navChat.addEventListener('click', e => {
-      e.preventDefault();
-      setActiveSection(chatSection);
-      chatInput.focus();
-    });
-    navRoom.addEventListener('click', e => {
-      e.preventDefault();
-      setActiveSection(roomSection);
-      roomInput.focus();
-    });
+    homeBtn.addEventListener('click', () => setActivePage('home'));
+    aiChatBtn.addEventListener('click', () => setActivePage('aiChat'));
+    roomChatBtn.addEventListener('click', () => setActivePage('roomChat'));
 
+    // --- Home Page Mango Fact ---
+    const mangoMeme = document.getElementById('mangoMeme');
+    const mangoFact = document.getElementById('mangoFact');
 
-    // --- HOME MANGO MEME CLICK for fun fact ---
-    const homeMeme = document.getElementById('home-meme');
     const mangoFacts = [
       "Mangoes are called the 'king of fruits' in many countries.",
       "Mango trees can grow up to 100 feet tall!",
@@ -507,21 +246,17 @@ function sendUserMessage() {
       "Mangoes ripen faster if kept in a paper bag.",
       "The mango fruit takes about 3 to 6 months to mature after flowering."
     ];
-    homeMeme.addEventListener('click', () => {
+
+    mangoMeme.addEventListener('click', () => {
       const fact = mangoFacts[Math.floor(Math.random() * mangoFacts.length)];
-      alert("🍋 Mango Fact: " + fact);
+      mangoFact.textContent = fact;
     });
 
-
     // --- Lil' Mango AI Chat ---
-    const chatContainer = document.getElementById('chat-container');
-    const chatInput = document.getElementById('chat-input');
-    const sendButton = document.getElementById('send-button');
+    const chatContainer = document.getElementById('chatContainer');
+    const chatInput = document.getElementById('chatInput');
 
-    // AI mango responses - positive, fun, no meanness allowed
-    const mangoResponses = [
-      "Hey there, mango lover! What's juicy with you today?",
-      "Did you know mangoes are full of happiness vitamins? 🍋😄",
+    const aiMangoResponses = [
       "Stay sweet like a ripe mango!",
       "Mangoes are nature’s candy — enjoy the sweetness!",
       "Peeling back your worries one slice at a time!",
@@ -537,7 +272,6 @@ function sendUserMessage() {
       "Smiling is the best mango flavor, don’t you think?"
     ];
 
-    // Filter out any user input with mean words
     const bannedWords = ["hate", "stupid", "dumb", "idiot", "kill", "die", "ugly", "fool", "suck", "bastard", "trash", "moron"];
 
     function containsBannedWords(text) {
@@ -559,29 +293,54 @@ function sendUserMessage() {
     }
 
     function getAIResponse(userText) {
-      // Basic fun filtering: if user is mean, redirect politely
       if (containsBannedWords(userText)) {
         return "Oops! Lil' Mango only shares kindness and good vibes. Let's keep it sweet!";
       }
-      // Respond with a random mango phrase or an echo with mango twist
+
       const lower = userText.toLowerCase();
 
-      // If user asks a question about mangoes, answer a random fact
-      if (lower.includes('fact') || lower.includes('know') || lower.includes('mango') || lower.includes('tell')) {
+      if (lower.includes('fact') || lower.includes('know') || lower.includes('tell')) {
         const fact = mangoFacts[Math.floor(Math.random() * mangoFacts.length)];
         return `🍋 Mango Fact for you: ${fact}`;
       }
 
-      // If user says thanks or hi
-      if (lower.includes('hi') || lower.includes('hello')) {
+      if (lower.includes('mango')) {
+        return "Mangoes are amazing! What would you like to know about them?";
+      }
+
+      if (lower.includes('hi') || lower.includes('hello') || lower.includes('hey')) {
         return "Hey! Mango greetings to you! 🥭😊";
       }
+
       if (lower.includes('thank')) {
         return "You're very welcome! Stay juicy! 🍋";
       }
 
-      // Otherwise random mango response
-      return mangoResponses[Math.floor(Math.random() * mangoResponses.length)];
+      if (lower.includes('smoothie')) {
+        return "A mango smoothie is delicious and refreshing! Perfect for sunny days.";
+      }
+
+      if (lower.includes('tree')) {
+        return "Mango trees can live for hundreds of years and grow really tall!";
+      }
+
+      if (lower.includes('ripen') || lower.includes('ripe')) {
+        return "Keep mangoes in a paper bag to help them ripen faster.";
+      }
+
+      if (lower.includes('varieties') || lower.includes('types')) {
+        return "There are over 400 varieties of mangoes worldwide — so many flavors to enjoy!";
+      }
+
+      if (lower.includes('vitamin') || lower.includes('health')) {
+        return "Mangoes are packed with vitamins A, C, and lots of antioxidants.";
+      }
+
+      if (lower.includes('sweet') || lower.includes('taste')) {
+        return "Mangoes are nature's candy with a perfect balance of sweet and tangy!";
+      }
+
+      return aiMangoResponses[Math.floor(Math.random() * aiMangoResponses.length)];
     }
 
     function sendUserMessage() {
@@ -595,18 +354,16 @@ function sendUserMessage() {
       }, 700);
     }
 
-    sendButton.addEventListener('click', sendUserMessage);
     chatInput.addEventListener('keydown', e => {
       if (e.key === 'Enter') sendUserMessage();
     });
 
-    // --- Mango Lovers Chat Room (local simulation) ---
-    const roomChatContainer = document.getElementById('room-chat-container');
-    const roomInput = document.getElementById('room-input');
-    const roomSendButton = document.getElementById('room-send-button');
+    // --- Mango Lovers Chat Room ---
+    const roomChatContainer = document.getElementById('roomChatContainer');
+    const roomInput = document.getElementById('roomInput');
+    const roomSendButton = document.getElementById('roomSendButton');
 
-    // Simple chat history in-memory
-    const roomMessages = [];
+    let roomMessages = [];
 
     function appendRoomMessage(text) {
       const msgDiv = document.createElement('div');
@@ -616,15 +373,19 @@ function sendUserMessage() {
       roomChatContainer.scrollTop = roomChatContainer.scrollHeight;
     }
 
+    function containsBannedWordsRoom(text) {
+      text = text.toLowerCase();
+      return bannedWords.some(word => text.includes(word));
+    }
+
     function sendRoomMessage() {
       const text = roomInput.value.trim();
       if (!text) return;
-      if (containsBannedWords(text)) {
+      if (containsBannedWordsRoom(text)) {
         alert("Let's keep the chat kind and friendly, please!");
         roomInput.value = '';
         return;
       }
-      // Add message to room messages
       roomMessages.push(text);
       appendRoomMessage(text);
       roomInput.value = '';
@@ -635,15 +396,10 @@ function sendUserMessage() {
       if (e.key === 'Enter') sendRoomMessage();
     });
 
-    // Initialize with some welcome messages
+    // Initialize Mango Lovers Chat Room with welcome messages
     const welcomeMsgs = [
       "🍋 Welcome to Mango Lovers Chat Room! Say hi and share your mango stories!",
       "🥭 Lil' Mango says: Be kind and juicy!",
       "🍍 Remember, sharing is caring, especially with mangoes!"
     ];
-    welcomeMsgs.forEach(msg => appendRoomMessage(msg));
-
-  </script>
-</body>
-</html>
-
+    welcome

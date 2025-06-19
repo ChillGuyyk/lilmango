@@ -1,218 +1,252 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lil' Mango Fan Site 🍋🥭</title>
-  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet" />
+  <title>Lil' Mango - The Ultimate Mango Fan Site 🥭🍋</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Open+Sans&display=swap" rel="stylesheet" />
+
   <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+    }
     body {
-      margin: 0; padding: 0;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      background: #ffe066;
-      color: #664d03;
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background: linear-gradient(135deg, #fff1b8, #ffb347);
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
+      color: #663300;
     }
     header {
-      background: #ffb347;
-      padding: 20px;
-      text-align: center;
+      background: #ff931e;
+      padding: 1.5rem 2rem;
       font-family: 'Luckiest Guy', cursive;
-      font-size: 2.5rem;
-      font-weight: bold;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      font-size: 2.8rem;
+      color: white;
+      text-align: center;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      user-select: none;
     }
     nav {
-      background: #ffcc5c;
+      background: #ffa500cc;
       display: flex;
       justify-content: center;
-      gap: 20px;
-      padding: 10px 0;
-      font-weight: bold;
+      gap: 2rem;
+      padding: 0.8rem 0;
       font-family: 'Luckiest Guy', cursive;
+      font-size: 1.3rem;
+      box-shadow: inset 0 -3px 5px rgba(0,0,0,0.1);
+      user-select: none;
     }
     nav a {
-      color: #664d03;
+      color: #fff;
       text-decoration: none;
-      font-size: 1.3rem;
-      transition: color 0.3s;
+      padding: 0.25rem 0.75rem;
+      border-radius: 30px;
+      transition: background-color 0.3s ease, color 0.3s ease;
       cursor: pointer;
     }
-    nav a:hover {
-      color: #ff6f61;
+    nav a:hover,
+    nav a.active {
+      background: #ff6f00;
+      color: #fffddb;
+      box-shadow: 0 0 12px #ff6f00cc;
     }
     main {
       flex-grow: 1;
-      padding: 20px;
-      max-width: 800px;
-      margin: 0 auto;
+      max-width: 900px;
+      margin: 2rem auto 3rem;
+      background: #fff7d1;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(255,165,0,0.4);
+      padding: 2rem 2.5rem;
+      user-select: text;
     }
-    footer {
-      background: #ffb347;
+    section {
+      display: none;
+    }
+    section.active {
+      display: block;
+    }
+
+    /* Home page */
+    #home-section h1 {
+      font-family: 'Luckiest Guy', cursive;
+      font-size: 3rem;
+      margin-bottom: 0.3rem;
+      color: #ff6f00;
       text-align: center;
-      padding: 10px;
-      font-size: 0.9rem;
-      color: #664d03;
-      box-shadow: 0 -3px 6px rgba(0,0,0,0.1);
+      user-select: none;
     }
-    /* Chat page styles */
-    #chat-container {
+    #home-section p {
+      font-size: 1.15rem;
+      line-height: 1.5;
+      max-width: 600px;
+      margin: 1rem auto 2rem;
+      text-align: center;
+      color: #663300;
+    }
+    #home-meme {
+      display: block;
+      margin: 0 auto;
+      max-width: 320px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #ff8c00aa;
+      user-select: none;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    #home-meme:hover {
+      transform: scale(1.05) rotate(-3deg);
+      box-shadow: 0 0 35px #ff6f00cc;
+    }
+
+    /* Chat with Lil Mango */
+    #chat-section {
       display: flex;
       flex-direction: column;
-      height: 70vh;
-      border: 3px solid #ff6f61;
-      border-radius: 10px;
-      padding: 10px;
-      background: #fff5cc;
-      box-shadow: inset 0 0 10px #ffcc5c;
+      height: 65vh;
+      max-height: 600px;
     }
-    #messages {
+    #chat-container {
       flex-grow: 1;
+      background: #fff3b0;
+      border-radius: 15px;
+      padding: 1rem;
+      box-shadow: inset 0 0 15px #ffb347cc;
       overflow-y: auto;
-      padding: 10px;
-      border-bottom: 3px solid #ff6f61;
+      display: flex;
+      flex-direction: column;
     }
     .message {
-      margin: 10px 0;
-      padding: 10px;
-      border-radius: 15px;
       max-width: 70%;
-      clear: both;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+      margin: 0.5rem 0;
+      padding: 10px 16px;
+      border-radius: 20px;
       font-weight: 600;
+      box-shadow: 0 2px 7px rgba(0,0,0,0.1);
+      line-height: 1.3;
+      user-select: text;
+      word-wrap: break-word;
     }
     .user-message {
       background: #ffcc5c;
       align-self: flex-end;
-      float: right;
+      border-bottom-right-radius: 2px;
+      color: #663300;
+      animation: slideInRight 0.3s ease;
     }
     .ai-message {
       background: #ffe066;
       align-self: flex-start;
-      float: left;
+      border-bottom-left-radius: 2px;
+      color: #663300;
+      animation: slideInLeft 0.3s ease;
+    }
+    @keyframes slideInRight {
+      from { transform: translateX(50px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideInLeft {
+      from { transform: translateX(-50px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
     }
     #chat-input-container {
-      margin-top: 10px;
       display: flex;
+      margin-top: 10px;
       gap: 10px;
     }
     #chat-input {
       flex-grow: 1;
-      padding: 10px;
+      padding: 12px 18px;
       font-size: 1rem;
-      border: 2px solid #ff6f61;
-      border-radius: 15px;
+      border-radius: 25px;
+      border: 3px solid #ff931e;
       outline: none;
+      transition: border-color 0.3s ease;
+    }
+    #chat-input:focus {
+      border-color: #ff6f00;
+      box-shadow: 0 0 10px #ff6f00cc;
     }
     #send-button {
-      background: #ff6f61;
+      background: #ff6f00;
       border: none;
       color: white;
-      font-weight: bold;
-      padding: 0 20px;
-      font-size: 1rem;
-      border-radius: 15px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 0 25px;
+      border-radius: 25px;
       cursor: pointer;
-      transition: background-color 0.3s;
+      user-select: none;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 8px #ff6f00bb;
     }
     #send-button:hover {
-      background: #ff4a3c;
-      animation: bounce 0.4s;
+      background: #e65c00;
+      box-shadow: 0 6px 14px #e65c00cc;
+      animation: bounce 0.3s;
     }
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    Lil' Mango Fan Site 🥭🍋
-  </header>
-  <nav>
-    <a href="#" id="home-link">Home</a>
-    <a href="#" id="chat-link">Chat with Lil' Mango</a>
-  </nav>
-  <main>
-    <section id="home-section">
-      <h1>Welcome to Lil' Mango!</h1>
-      <p>The funniest mango fan site on the web.</p>
-      <img src="https://i.imgur.com/WQZexNC.png" alt="Funny Mango Meme" style="max-width:100%; border-radius: 15px; box-shadow: 0 0 10px #ff6f61;" />
-      <p>Chat with Lil' Mango and see if you can stump the mango AI 🍋🥭</p>
-    </section>
-
-    <section id="chat-section" style="display:none;">
-      <div id="chat-container">
-        <div id="messages"></div>
-        <div id="chat-input-container">
-          <input type="text" id="chat-input" placeholder="Say something to Lil' Mango..." />
-          <button id="send-button">Send</button>
-        </div>
-      </div>
-    </section>
-  </main>
-  <footer>
-    Made with mango love 🍋🥭 by ChillGuyyk
-  </footer>
-
-  <script>
-    const homeLink = document.getElementById('home-link');
-    const chatLink = document.getElementById('chat-link');
-    const homeSection = document.getElementById('home-section');
-    const chatSection = document.getElementById('chat-section');
-
-    homeLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      homeSection.style.display = 'block';
-      chatSection.style.display = 'none';
-    });
-
-    chatLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      homeSection.style.display = 'none';
-      chatSection.style.display = 'block';
-      document.getElementById('chat-input').focus();
-    });
-
-    const messagesDiv = document.getElementById('messages');
-    const chatInput = document.getElementById('chat-input');
-    const sendButton = document.getElementById('send-button');
-
-    function addMessage(text, sender) {
-      const msgDiv = document.createElement('div');
-      msgDiv.textContent = text;
-      msgDiv.classList.add('message');
-      if(sender === 'user') msgDiv.classList.add('user-message');
-      else msgDiv.classList.add('ai-message');
-      messagesDiv.appendChild(msgDiv);
-      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+      50% { transform: translateY(-6px); }
     }
 
-    function getAiResponse(userText) {
-      const lower = userText.toLowerCase();
-      if(lower.includes('hello') || lower.includes('hi')) return "Hey there! Lil' Mango here 🍋🥭!";
-      if(lower.includes('mango')) return "Mangoes are the king of fruits, obviously!";
-      if(lower.includes('joke')) return "Why did the mango go to the party? Because it was the *peel* of the town!";
-      if(lower.includes('bye')) return "See you later, juicy friend!";
-      return "I'm Lil' Mango, I don't know everything, but I do know mangoes!";
+    /* Mango Lovers Chat room */
+    #room-section {
+      display: flex;
+      flex-direction: column;
+      height: 65vh;
+      max-height: 600px;
     }
-
-    sendButton.addEventListener('click', () => {
-      const userText = chatInput.value.trim();
-      if(!userText) return;
-      addMessage(userText, 'user');
-      chatInput.value = '';
-      setTimeout(() => {
-        const aiReply = getAiResponse(userText);
-        addMessage(aiReply, 'ai');
-      }, 700);
-    });
-
-    chatInput.addEventListener('keydown', (e) => {
-      if(e.key === 'Enter') sendButton.click();
-    });
-  </script>
-</body>
-</html>
+    #room-chat-container {
+      flex-grow: 1;
+      background: #fff3b0;
+      border-radius: 15px;
+      padding: 1rem;
+      box-shadow: inset 0 0 15px #ffb347cc;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 12px;
+    }
+    .room-message {
+      max-width: 80%;
+      margin: 0.4rem 0;
+      padding: 10px 18px;
+      border-radius: 20px;
+      font-weight: 600;
+      background: #ffcc5c;
+      color: #663300;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+      word-wrap: break-word;
+      user-select: text;
+      animation: fadeInMessage 0.3s ease;
+    }
+    @keyframes fadeInMessage {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    #room-input-container {
+      display: flex;
+      gap: 10px;
+    }
+    #room-input {
+      flex-grow: 1;
+      padding: 12px 18px;
+      font-size: 1rem;
+      border-radius: 25px;
+      border: 3px solid #ff931e;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+    #room-input:focus {
+      border-color: #ff6f00;
+      box-shadow: 0 0 10px #ff6f00cc;
+    }
+    #
